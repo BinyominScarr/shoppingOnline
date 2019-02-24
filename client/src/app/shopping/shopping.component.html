@@ -1,0 +1,179 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 panel">
+
+      <label>Search Products</label>
+      <input
+      #search
+      autofocus
+      type="search"
+      (keyup)="searchProducts(search.value)"
+      />
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 panel resizable">
+
+      <div *ngIf="serviceManager.htmlCartArr">
+
+        <div>
+
+          <h2><u>Cart</u></h2>
+
+          <button
+          class="left-btn"
+          [disabled]="serviceManager.htmlCartArr.length===0"
+          (click)=clearCart(serviceManager.currentCart._id)>
+          Clear Cart
+          </button>
+
+          <a routerLink="/checkout" class="router-link">
+            <button
+            class="right-btn float-right"
+            [disabled]="serviceManager.htmlCartArr.length===0">
+            Proceed to Checkout
+            </button>
+          </a>
+        </div>
+
+        <div *ngFor="let product of serviceManager.htmlCartArr">
+          <ul>
+            <li>
+              <img [src]="[product[1].img]" />
+            </li>
+            <li>
+              Product: {{product[1].name | titlecase}}
+            </li>
+            <li>
+              Qty: {{product[1].quantity}}
+            </li>
+            <li>
+              Price: {{product[1].price | number:'1.2-2'}}$
+            </li>
+            <li>
+              <a
+                (click)="removeFromCart(serviceManager.currentCart._id, product[0])">
+                remove from cart
+            </a>
+          </li>
+          </ul>
+        </div>
+
+        <div>
+
+          <h3>Total: {{serviceManager.cartTotal | number:'1.2-2'}}$</h3>
+
+          <button
+          class="left-btn"
+          [disabled]="serviceManager.htmlCartArr.length===0"
+          (click)=clearCart(serviceManager.currentCart._id)>
+          Clear Cart
+          </button>
+
+          <a routerLink="/checkout" class="router-link">
+            <button
+            class="right-btn float-right"
+            [disabled]="serviceManager.htmlCartArr.length===0">
+            Proceed to Checkout
+            </button>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-9 panel">
+
+      <div>
+        <a
+        *ngFor="let category of serviceManager.categories"
+        class="col-sm-3"
+        (click)="selectCategory(category.id)">
+        {{category.category| titlecase}}
+        </a>
+      </div>
+
+      <div *ngIf="selectedProducts">
+
+        <div *ngFor="let product of selectedProducts" class="col-sm-4 product">
+          <ul class="text-center">
+            <li (click)="clicked(button)"><img src="{{product.image}}" /></li>
+            <li (click)="clicked(button)"><a>{{product.productName | titlecase}}</a></li>
+            <li (click)="clicked(button)"><a>{{product.price | number:'1.2-2'}}$</a></li>
+            <li>
+              <button
+              #button
+              data-toggle="modal"
+              data-target="#add_to_cart_modal"
+              (click)="productModal(product.image, product.productName, product.price, product._id)">
+              Choose Amount
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div id="add_to_cart_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <img src="./assets/icons/logo.jpg" />
+        </div>
+
+        <div class="modal-body row">
+
+          <div class="col-sm-8">
+            <img src="{{currentProduct.img}}" />
+          </div>
+
+          <div class="col-sm-4">
+
+            <p>Product: {{currentProduct.name | titlecase}}</p>
+            <p>Price: {{currentProduct.price | number:'1.2-2'}}$</p>
+
+            <label>Qty:</label>
+            <input
+            #qty
+            [type]="qtyConfig.type"
+            [attr.maxlength]="qtyConfig.maxlength"
+            [attr.minlength]="qtyConfig.minlength"
+            (mouseleave)="qty.blur()"
+            (mouseenter)="qty.focus()"
+            />
+
+            <h6>(Qty limit is set to 100 at a time)</h6>
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+          <button
+          class="float-right"
+          [disabled]="qty.value > qtyConfig.limit || qty.value < qtyConfig.minlength"
+          data-dismiss="modal"
+          (click)="getQty(qty.value)" >
+          Add to Cart
+          </button>
+
+          <button data-dismiss="modal" class="float-left">Close</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

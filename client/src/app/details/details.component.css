@@ -1,0 +1,13 @@
+h2, p {
+  display: block;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+p {
+  font-weight: 700;
+}

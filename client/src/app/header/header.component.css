@@ -1,0 +1,29 @@
+img {
+  height: 100px;
+}
+
+span {
+  color: #f7f8f9;
+  display: inline-block;
+  margin-left: 20px;
+  position: absolute;
+  top: 36%;
+}
+
+a {
+  display: block;
+  cursor: pointer;
+  font-size: 12px;
+  width: 45px;
+}
+
+a:hover {
+  color: #f7f8f9;
+}
+
+.navbar {
+  background-color: #0c2742;
+  font-family: Montserrat, sans-serif;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+}

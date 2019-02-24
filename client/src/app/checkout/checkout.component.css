@@ -1,0 +1,43 @@
+a {
+  cursor: pointer;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  height: 150px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+label {
+  font-weight: 400;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+
+form > div  {
+  height: 100px;
+}
+
+label, input, select{
+  display: block;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+p {
+  color: #f00;
+  margin-left: 20px;
+  position: absolute;
+}
+
+#recepit_div {
+  position: relative;
+  top: 175px;
+}

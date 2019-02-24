@@ -1,0 +1,10 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div id="main_nav">
+      <img src="./assets/icons/logo.jpg" />
+      <span>Hello {{currentUser.name | titlecase}}
+        <a *ngIf="currentUser.loggedIn" (click)="logout()" routerLink="/login">Logout</a>
+      </span>
+    </div>
+  </div>
+</nav>

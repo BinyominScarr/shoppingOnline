@@ -1,0 +1,106 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div *ngIf="!currentUser.loggedIn" class="col-sm-3 panel">
+
+      <h2 *ngIf="state=='next' || state=='register'"><u>Register</u></h2>
+      <h2 *ngIf="state=='login'"><u>Login</u></h2>
+      <h2 *ngIf=""></h2>
+
+      <form [formGroup]="form">
+
+        <div *ngIf="state=='next'">
+
+          <label>First Name:</label>
+          <input formControlName="firstName" />
+          <p>{{form.controls.firstName.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state=='next'">
+
+          <label>Last Name:</label>
+          <input formControlName="lastName" />
+          <p>{{form.controls.lastName.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state!='register'">
+
+          <label>Email:</label>
+          <input formControlName="email" />
+          <p>{{form.controls.email.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state!='register'">
+
+          <label>Password:</label>
+          <input formControlName="password" type="password" />
+          <p>{{form.controls.password.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state=='next'">
+
+          <label>Confirm Password:</label>
+          <input formControlName="confirmPassword" type="password" />
+          <p>{{form.controls.confirmPassword.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state=='register'">
+
+          <label>ID:</label>
+          <input formControlName="israeliId" type="text" />
+          <p>{{form.controls.israeliId.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state=='register'">
+
+          <label>City :</label>
+          <select formControlName="city">
+            <option *ngFor="let city of serviceManager.cities; let i=index" [hidden]="i==0">{{city | titlecase}}</option>
+          </select>
+          <p>{{form.controls.city.errors?.error}}</p>
+
+        </div>
+
+        <div *ngIf="state=='register'">
+
+          <label>Street:</label>
+          <input formControlName="street" type="text" />
+          <p>{{form.controls.street.errors?.error}}</p>
+
+        </div>
+
+        <button *ngIf="state=='next'" [disabled]="next()" (click)="changeState('register')">Next</button>
+        <button *ngIf="state=='register'" (click)="changeState()">Back</button>
+
+        <input *ngIf="state=='register'" type="submit" value="Register" [disabled]="form.invalid" (click)="sendForm()" />
+        <input *ngIf="state=='login'" type="submit" value="Login" [disabled]="form.invalid" (click)="sendForm()" />
+
+      </form>
+
+      <a *ngIf="state=='next' || state=='register'" (click)="changeState('login')">Already a member click here to login</a>
+      <a *ngIf="state=='login'" (click)="changeState()">Not yet a member click here to register</a>
+
+    </div>
+
+    <div *ngIf="currentUser.loggedIn" class="col-sm-3 panel">
+      <a routerLink="/shopping" class="router-link"><button>{{shoppingStatus}}</button></a>
+    </div>
+
+    <div class="col-sm-6 panel">
+      <app-about></app-about>
+    </div>
+
+    <div class="col-sm-3 panel">
+      <app-details></app-details>
+    </div>
+
+  </div>
+
+</div>

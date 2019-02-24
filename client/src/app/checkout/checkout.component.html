@@ -1,0 +1,143 @@
+<div *ngIf="!orderSubmitted" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 panel">
+
+      <label>Search Products</label>
+      <input
+      #search
+      autofocus
+      type="search"
+      (keyup)="searchProducts(search.value)"
+      />
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div *ngIf="!orderSubmitted" class="col-sm-6 panel resizable">
+
+      <h2><u>Cart</u></h2>
+
+      <a routerLink="/shopping" class="router-link">
+        <button class="left-btn">Continue Shopping</button>
+      </a>
+
+      <h4 *ngIf="searchedProducts && searchedProducts.length==0">No match found...</h4>
+
+      <div *ngIf="serviceManager.htmlCartArr && !searchedProducts">
+
+        <div *ngFor="let product of serviceManager.htmlCartArr">
+          <ul>
+            <img [src]="[product[1].img]" />
+            <li>Product: {{product[1].name | titlecase}}</li>
+            <li>Qty: {{product[1].quantity}}</li>
+            <li>Price: {{product[1].price | number:'1.2-2'}}$</li>
+          </ul>
+        </div>
+
+        <div>
+
+            <h3>Total: {{serviceManager.cartTotal | number:'1.2-2'}}$</h3>
+
+            <a routerLink="/shopping" class="router-link">
+              <button class="left-btn">Continue Shopping</button>
+            </a>
+
+          </div>
+
+      </div>
+
+      <div *ngIf="serviceManager.htmlCartArr && searchedProducts">
+
+        <div *ngFor="let product of searchedProducts">
+          <ul>
+            <img [src]="[product[1].img]" />
+            <li>Product: {{product[1].name | titlecase}}</li>
+            <li>Qty: {{product[1].quantity}}</li>
+            <li>Price: {{product[1].price | number:'1.2-2'}}$</li>
+          </ul>
+        </div>
+
+        <div>
+
+          <h3>Total: {{serviceManager.cartTotal | number:'1.2-2'}}$</h3>
+
+          <a routerLink="/shopping" class="router-link">
+            <button class="left-btn">Continue Shopping</button>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="!orderSubmitted" class="col-sm-6 panel">
+
+      <h2><u>Checkout</u></h2>
+
+      <form [formGroup]="form">
+
+        <div>
+          <label>City:</label>
+          <select formControlName="city">
+            <option
+            *ngFor="let city of serviceManager.cities; let i=index"
+            [hidden]="i==0">
+            {{city | titlecase}}
+            </option>
+          </select>
+          <p>{{form.controls.city.errors?.error}}</p>
+        </div>
+
+        <div>
+          <label>Street:</label>
+          <input formControlName="street" #street (dblclick)="street.value=userService.currentUser.street" />
+          <p>{{form.controls.street.errors?.error}}</p>
+        </div>
+
+        <div>
+          <label>Shipping Date:</label>
+          <input formControlName="shippingDate" required type="date" />
+          <p>{{form.controls.shippingDate.errors?.error}}</p>
+        </div>
+
+        <div>
+          <label>Credit Card:</label>
+          <input formControlName="creditCard" />
+          <p>{{form.controls.creditCard.errors?.error}}</p>
+        </div>
+
+        <button
+        class="left-btn"
+        type="submit"
+        [disabled]="form.invalid"
+        (click)="submitOrder()">
+        Confirm Purchase
+        </button>
+
+      </form>
+
+    </div>
+
+    <div *ngIf="orderSubmitted" id="recepit_div" class="center-text">
+
+      <h2>Order Successful!</h2>
+
+      <img src="../../assets/images/joke/balaclava.png">
+
+      <h3>Pay up! (please)</h3>
+
+      <a>Click here to download receipt</a>
+
+      <div>
+        <a routerLink="/login" class="router-link">
+          <button class="left-btn">Goodbye</button>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

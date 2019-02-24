@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 panel">
+
+      <label>Search Products</label>
+      <input type="search" autofocus #search (keyup)="searchProducts(search.value)" />
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 panel">
+
+      <button class="plus-btn float-left" (click)="addProduct()">Add New Product</button>
+
+      <h2 *ngIf="currentProduct"><u>{{currentProduct.productName | titlecase}}</u></h2>
+
+      <form *ngIf="currentProduct" [formGroup]="form">
+
+          <img [src]="currentProduct.image" [hidden]="!currentProduct.image" />
+
+          <div>
+            <label>Name: (a-z) </label>
+            <input formControlName="productName" [placeholder]="currentProduct.productName"/>
+            <p>{{form.controls.productName.errors?.error}}</p>
+          </div>
+
+          <div>
+            <label>Category: (1-4) </label>
+            <input formControlName="categoryId" [placeholder]="currentProduct.categoryId"/>
+            <p>{{form.controls.categoryId.errors?.error}}</p>
+          </div>
+
+          <div>
+            <label>Price (0.00)</label>
+            <input formControlName="price" placeholder="{{currentProduct.price | number:'1.2-2'}}" />
+            <p>{{form.controls.price.errors?.error}}</p>
+          </div>
+
+          <div>
+            <label>Image Link:</label>
+            <input formControlName="image" [placeholder]="currentProduct.image"/>
+            <p>{{form.controls.image.errors?.error}}</p>
+          </div>
+
+        </form>
+
+        <button class="save-btn" [disabled]="form.invalid" (click)="updateProduct()">Save</button>
+
+    </div>
+
+    <div class="col-sm-9 panel">
+      <div>
+        <a *ngFor="let category of serviceManager.categories"
+        class="col-sm-3"
+        (click)="selectCategory(category.id)">
+        {{category.category| titlecase}}
+        </a>
+      </div>
+
+      <div *ngIf="selectedProducts">
+
+        <div *ngFor="let product of selectedProducts" class="col-sm-4 product">
+          <ul class="text-center">
+            <li (click)="clicked(button)"><img src="{{product.image}}" /></li>
+            <li (click)="clicked(button)"><a>{{product.productName | titlecase}}</a></li>
+            <li (click)="clicked(button)"><a>{{product.price | number:'1.2-2'}}$</a></li>
+            <li>
+              <button #button (click)="editProduct(product.productName)">
+                Edit
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

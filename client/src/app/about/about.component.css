@@ -1,0 +1,15 @@
+#main_div {
+  text-align: center;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+img {
+  height: 500px;
+}
+
+ul {
+  list-style-position: inside;
+}
