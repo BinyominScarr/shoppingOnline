@@ -1,0 +1,48 @@
+body {
+  font: 400 15px/1.8 Lato, sans-serif;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.panel {
+  border: 1px solid #000;
+  position: relative;
+  top: 150px;
+}
+
+.resizable {
+  resize: horizontal;
+  overflow: auto;
+}
+
+.router-link {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+}
+
+.left-btn {
+  margin: 15px;
+  margin-left: 0px;
+}
+
+.right-btn {
+  margin: 15px;
+  margin-right: 0px;
+}
