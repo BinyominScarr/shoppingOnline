@@ -1,11 +1,11 @@
 # Shopping Online
 
 *Note:* &nbsp; I have inserted comments into all the Angular components where I thought they would be helpful, however I did not bother commenting the following:
-* Angular services.
-* Angular models.
-* Angular HTML.
-* Angular CSS.
-* Node.Js.\
+* Angular services
+* Angular models
+* Angular HTML
+* Angular CSS
+* Node.Js\
 \
 The reason I did not comment the above code is because I think it is pretty self explanatory.
 To get a better understanding of the way the `Angular services` are run study the `service manager`
