@@ -5,7 +5,7 @@
 * Angular models
 * Angular HTML
 * Angular CSS
-* Node.Js\
+* Node.js\
 \
 The reason I did not comment the above code is because I think it is pretty self explanatory.
 To get a better understanding of the way the `Angular services` are run study the `service manager`
