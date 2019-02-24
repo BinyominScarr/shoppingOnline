@@ -1,2 +1,0 @@
-# shoppingOnline
-mock online supermarket.
