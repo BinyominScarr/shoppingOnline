@@ -19,11 +19,8 @@ To get a better understanding of the way the `Angular services` are run study th
 * Shopping carts are saved to the users account.
 * Only the project's Administrator can add/edit products.
 
-### See Live Demo:
-TODO
-
-### Demo:
-![picture](shoppingonline.gif)
+### Download to GIF Demo:
+https://drive.google.com/file/d/17l1Q7uHL-JCCQ5hVlg30sGXackaC24SC/view?usp=sharing
 
 ### Projects source of shopping center products:
 *Note:* &nbsp; The images and their path must be downloaded and created by you.\
